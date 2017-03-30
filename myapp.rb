@@ -4,6 +4,7 @@ require_relative 'calculator'
 
 get '/' do
   erb :form
+
 end
 
 post '/table' do
@@ -20,3 +21,4 @@ end
 get '/*' do
   redirect '/'
 end
+
