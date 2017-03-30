@@ -3,16 +3,20 @@ require 'json'
 require_relative 'calculator'
 
 get '/' do
-  erb :index
+  erb :form
 end
 
-post '/calculate' do
+post '/table' do
   @calculator = Calculator.new(params[:rate], params[:amount], params[:type], params[:term])
   if @calculator.valid?
     status 200
-    erb :calculation, locals: { calculation: @calculator.calculate }
+    erb :table, locals: { calculation: @calculator.calculate }
   else
     status 400
     { errors: @calculator.errors }.to_json
   end
+end
+
+get '/*' do
+  redirect '/'
 end

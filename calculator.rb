@@ -1,7 +1,7 @@
 class Calculator
 
     REQUIRED_ATTRIBUTES = %i(rate amount term type)
-    ALLOWED_TYPES       = %i(standard annuity)
+    ALLOWED_TYPES       = %i(standart annuity)
 
   attr_reader :rate, :amount, :type, :term, :errors
 
@@ -17,8 +17,8 @@ class Calculator
     key = @rate/1200
 
     result = []
-    case @type.to_s
-      when 'annuity'
+    case @type
+      when :annuity
         monthly_payment = (@amount * (key + (key / (((1 + key) ** @term)- 1)))).round(2)
         for i in 0..(term-1)
           result << { 
@@ -29,7 +29,7 @@ class Calculator
             scum: ((@amount - payment) < 0) ? 0 : @amount = (@amount - payment).round(2)
           }
         end
-      when 'standard'
+      when :standart
         monthly_payment = (@amount / @term).round(2)
         for i in 0..(@term-1)
           result << {
@@ -74,11 +74,7 @@ class Calculator
     errors[attribute] << "Must be greater than #{offset}"
     false
   end
-  def calulator_value_valid_type?(attribute)
-    return true if send(attribute).is_a? Numeric
-    errors[attribute] << "Must be number"
-    false
-  end
+  
   def calculator_value_allowed_in?(attribute, allowed_values)
     return true if allowed_values.include?(send(attribute))
     errors[attribute] << "Must be either one of #{allowed_values.join(', ')}"
