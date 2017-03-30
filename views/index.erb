@@ -1,0 +1,22 @@
+    <form class='form-horizontal' method="post" action="/calculate">
+    <div class='form-group'>
+      <label for='rate' class='col-sm-3 control-label'>Процентная ставка (%):</label>
+      <input type="text" name="rate" id="rate">
+    </div>
+    <div class='form-group'>
+          <label for='amount' class='col-sm-3 control-label'>Сумма кредита:</label>
+          <input type="text" name="amount" id="amount">
+    </div>
+        <div class='form-group'>
+      <label for='term' class='col-sm-3 control-label'>Срок кредита (в месяцах):</label>
+      <input type="text" name="term" id="term">
+    </div>
+      <div class='radio'>
+            <p>Метод погашения кредита:</p>
+        <label>
+          <input type="radio" name="type" value="annuity" /> Аннуитентный (равными частями)<br>
+          <input type="radio" name="type" value="standard" checked > Стандартный 
+        </label>
+      </div>
+      <input type="submit" value="Построить"/>
+    </form>

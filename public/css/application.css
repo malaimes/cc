@@ -1,0 +1,7 @@
+.container-fluid {
+  width: 800px;
+  margin: 0 auto;
+}
+.table th, td {
+    text-align: center;
+}
